@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 10fe3367d87eac947802c39157e87522
   m_SerializeEntries:
-  - m_GUID: 8a2895ce8c6f3314db8e2526af8df6c1
-    m_Address: Assets/ScriptableObjects/EventChannels/SceneManagement
+  - m_GUID: 65b55605a8e79474c9be900ee78c8bd9
+    m_Address: Assets/ScriptableObjects/EventChannels
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

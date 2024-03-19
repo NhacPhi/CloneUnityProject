@@ -502,6 +502,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5987383671521169881, guid: ca66e074fc3128940b75e38ccd3fa9fc, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6646428376301073935, guid: ca66e074fc3128940b75e38ccd3fa9fc, type: 3}
       propertyPath: m_Name
       value: MainMenu_Canvas

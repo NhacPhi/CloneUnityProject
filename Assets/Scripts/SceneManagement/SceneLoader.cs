@@ -98,4 +98,9 @@ public class SceneLoader : MonoBehaviour
 
         _fadeRequestChannel.FadeIn(_fadeDuration);
     }
+
+    private void ExitGame()
+    {
+        Application.Quit();
+    }
 }
