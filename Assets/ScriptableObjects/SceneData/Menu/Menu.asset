@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Main/title menu, the only menu that exists as a standalone scene
   sceneType: 1
   sceneReference:
-    m_AssetGUID: 52893216c8cb3e646b45f1ee90683eb7
+    m_AssetGUID: d5748406919c8b54ea5d24d3e2910002
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
