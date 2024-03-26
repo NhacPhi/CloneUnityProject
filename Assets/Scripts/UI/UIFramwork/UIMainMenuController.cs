@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 namespace UIFramework
 {
-
     public class UIMainMenuController : MonoBehaviour
     {
         [SerializeField] private UISettings defaultUISettings = null;
@@ -17,6 +17,15 @@ namespace UIFramework
         {
             uiFrame = defaultUISettings.CreateUIInstance();
         }
+        private void OnEnable()
+        {
+            Signals.Get<ShowGamePopupSignal>().AddListener(OnShowPopup);
+        }
+
+        private void OnDisable()
+        {
+            Signals.Get<ShowGamePopupSignal>().RemoveListener(OnShowPopup);
+        }
         // Start is called before the first frame update
         void Start()
         {
@@ -27,6 +36,11 @@ namespace UIFramework
         void Update()
         {
 
+        }
+
+        private void OnShowPopup(GamePopupProperties popupProperites)
+        {
+            uiFrame.OpenWindow(ScreenIds.ConfirmationPopup, popupProperites);
         }
     }
 }

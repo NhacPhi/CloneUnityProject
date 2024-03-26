@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Test.Utils
+namespace Utils
 {
     public interface ISignal
     {
