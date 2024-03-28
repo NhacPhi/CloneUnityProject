@@ -7,11 +7,18 @@ namespace UIFramework
 {
     public class StartMainMenuController : WindowController
     {
+        [Header("Broadcasting on")]
+        [SerializeField] private VoidEventChannelSO _startNewGameEvent;
         public void OnUIShowPopup()
         {
             Signals.Get<ShowGamePopupSignal>().Dispatch(GetPopupData(PopupType.Quit));
         }
 
+        public void OnNewGame()
+        {
+            //Signals.Get<ShowGamePopupSignal>().Dispatch(GetPopupData(PopupType.NewGame));
+            _startNewGameEvent.RaiseEvent();
+        }
 
         private GamePopupProperties GetPopupData(PopupType type)
         {
@@ -20,7 +27,10 @@ namespace UIFramework
             switch(type)
             {
                 case PopupType.NewGame:
-                    break;
+                    {
+                        popupProperties = new GamePopupProperties("NewGame ?", "Are you sure create new game?");
+                    }
+                   break;
                 case PopupType.BackToMenu:
                     break;
                 case PopupType.Quit:
@@ -30,9 +40,7 @@ namespace UIFramework
                     break;
                 default:
                     Debug.Log("Can find popup smae type");
-                    break;
-
-                        
+                    break;                 
             }
 
             return popupProperties;
