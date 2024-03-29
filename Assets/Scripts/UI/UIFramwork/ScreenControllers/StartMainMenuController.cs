@@ -16,8 +16,8 @@ namespace UIFramework
 
         public void OnNewGame()
         {
-            //Signals.Get<ShowGamePopupSignal>().Dispatch(GetPopupData(PopupType.NewGame));
-            _startNewGameEvent.RaiseEvent();
+            Signals.Get<ShowGamePopupSignal>().Dispatch(GetPopupData(PopupType.NewGame));
+            //_startNewGameEvent.RaiseEvent();
         }
 
         private GamePopupProperties GetPopupData(PopupType type)
@@ -28,7 +28,7 @@ namespace UIFramework
             {
                 case PopupType.NewGame:
                     {
-                        popupProperties = new GamePopupProperties("NewGame ?", "Are you sure create new game?");
+                        popupProperties = new GamePopupProperties("NewGame ?", "Are you sure create new game?", "Confirm", "Cacnel", _startNewGameEvent.OnEventRaised);
                     }
                    break;
                 case PopupType.BackToMenu:
