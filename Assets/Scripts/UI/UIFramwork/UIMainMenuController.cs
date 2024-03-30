@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using Utils;
 
 namespace UIFramework
@@ -13,6 +15,7 @@ namespace UIFramework
 
         private UIFrame uiFrame;
 
+        private Camera _overlayCamera;
         private void Awake()
         {
             uiFrame = defaultUISettings.CreateUIInstance();
@@ -29,6 +32,16 @@ namespace UIFramework
         // Start is called before the first frame update
         void Start()
         {
+            _overlayCamera = uiFrame.GetComponent<Transform>().Find("UICamera").GetComponent<Camera>();
+            if (_overlayCamera != null)
+            {
+                var cameraData = cam.GetUniversalAdditionalCameraData();
+                cameraData.cameraStack.Add(_overlayCamera);
+            }
+            else
+            {
+                Debug.Log("Don't find camera UI");
+            }
             uiFrame.OpenWindow(ScreenIds.StartMainMenu);
         }
 
