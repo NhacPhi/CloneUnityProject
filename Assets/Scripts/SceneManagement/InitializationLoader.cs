@@ -16,6 +16,11 @@ public class InitializationLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Config app run on 60 HZ
+#if UNITY_ANDROID
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+#endif
+        //Application.targetFrameRate = 60;
         // Load the persistent managers scene
         _managersScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true).Completed += LoadEventChannel;
     }
