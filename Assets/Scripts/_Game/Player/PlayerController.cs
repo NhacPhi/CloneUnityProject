@@ -82,8 +82,7 @@ public class PlayerController : MonoBehaviour
         //Fix to avoid getting a Vector3.zero vector, which would result in the player turning to x:0, z:0
         if (_inputVector.sqrMagnitude != 0f)
         {
-            Debug.Log("Movement ");
-            _charCtrl.Move(adjustedMovement*Time.deltaTime);
+            _charCtrl.Move(adjustedMovement*Time.deltaTime * _maxForewardSpeed);
         }
 
     }

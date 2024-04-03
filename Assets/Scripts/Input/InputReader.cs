@@ -7,6 +7,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions
 {
     // GamePlay
     public event UnityAction<Vector2> MoveEvent = delegate { };
+    public event UnityAction<Vector2, bool> CameraEvent = delegate { };
 
     private GameInput _gameInput;
     private void OnEnable()
@@ -18,7 +19,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions
             _gameInput.Gameplay.SetCallbacks(this);
         }
     }
-
+    private bool IsDeviceMouse(InputAction.CallbackContext context) => context.control.device.name == "Mouse";
     private void OnDisable()
     {
         DisableAllInput();
@@ -29,8 +30,11 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("ABC");
         MoveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
+    public void OnRotateCamera(InputAction.CallbackContext context)
+    {
+        CameraEvent.Invoke(context.ReadValue<Vector2>(), IsDeviceMouse(context));
+    }
 }
