@@ -5,7 +5,7 @@ using UnityEngine;
 public class StartGameController : MonoBehaviour
 {
     [SerializeField] private GameSceneSO _locationsToLoad;
-
+    public InputReader inputReader;
     [Header("Listening to")]
     [SerializeField] private VoidEventChannelSO _onNewGameButton;
 
@@ -23,7 +23,7 @@ public class StartGameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        inputReader.EnableMainMenu();
     }
 
     // Update is called once per frame

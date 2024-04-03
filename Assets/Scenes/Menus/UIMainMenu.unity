@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455412266}
   - component: {fileID: 455412265}
+  - component: {fileID: 455412267}
   m_Layer: 0
   m_Name: StartGameController
   m_TagString: Untagged
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _locationsToLoad: {fileID: 11400000, guid: 4797a93c17ea8c94392f32a3ad2000af, type: 2}
+  inputReader: {fileID: 11400000, guid: d2ec6226504f55849b0c6dbe86c5dd18, type: 2}
   _onNewGameButton: {fileID: 11400000, guid: de10d9b77e90fc14ab86897e8e913dd5, type: 2}
   _loadLocation: {fileID: 11400000, guid: 1d04083f726a27947a6431f5e4a85cea, type: 2}
 --- !u!4 &455412266
@@ -170,6 +172,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &455412267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455412264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7284fdd5c70df57478a9f6288c44f755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: d2ec6226504f55849b0c6dbe86c5dd18, type: 2}
+  _defaultSelection: {fileID: 0}
+  _currentSelection: {fileID: 0}
+  _mouseSelection: {fileID: 0}
 --- !u!1001 &472010596
 PrefabInstance:
   m_ObjectHideFlags: 0

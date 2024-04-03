@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        //Screen.lockCursor = true;
+        _ipnutReader.EnableGamePlay();
+        Screen.lockCursor = true;
         isActiveCursor = true;
 
         _charCtrl = GetComponent<CharacterController>();
@@ -53,7 +54,6 @@ public class PlayerController : MonoBehaviour
     private void OnMove(Vector2 movement)
     {
         _inputVector = movement;
-        Debug.Log("Movement Vec2: " + _inputVector);
     }
     private void RecalculateMovement()
     {
