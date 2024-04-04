@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private bool _ReadyToJump;
 
     private bool isActiveCursor;
+
+    readonly int _HashForwardSpeed = Animator.StringToHash("ForwardSpeed");
+    private Animator _Animator;
     // Start is called before the first frame update
 
     private void Start()
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
         isActiveCursor = true;
 
         _charCtrl = GetComponent<CharacterController>();
+        _Animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -83,6 +87,11 @@ public class PlayerController : MonoBehaviour
         if (_inputVector.sqrMagnitude != 0f)
         {
             _charCtrl.Move(adjustedMovement*Time.deltaTime * _maxForewardSpeed);
+            _Animator.SetFloat(_HashForwardSpeed, 1);
+        }
+        else
+        {
+            _Animator.SetFloat(_HashForwardSpeed, 0);
         }
 
     }
