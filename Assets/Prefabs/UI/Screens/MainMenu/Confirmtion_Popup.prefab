@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 6979364228787785309}
   - component: {fileID: 8711569978710124721}
   - component: {fileID: 436067616077548051}
+  - component: {fileID: 6510105690288420432}
   m_Layer: 5
   m_Name: Confirmtion_Popup
   m_TagString: Untagged
@@ -602,6 +603,22 @@ MonoBehaviour:
   fadeDurationPercent: 0.5
   ease: 1
   xYSplit: 0.25
+--- !u!114 &6510105690288420432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217172699346145671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7284fdd5c70df57478a9f6288c44f755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: d2ec6226504f55849b0c6dbe86c5dd18, type: 2}
+  _defaultSelection: {fileID: 0}
+  _currentSelection: {fileID: 0}
+  _mouseSelection: {fileID: 0}
 --- !u!1001 &4059402883952268127
 PrefabInstance:
   m_ObjectHideFlags: 0

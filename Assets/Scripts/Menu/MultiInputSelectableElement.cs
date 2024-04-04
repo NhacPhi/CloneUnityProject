@@ -8,7 +8,7 @@ public class MultiInputSelectableElement : MonoBehaviour, IPointerEnterHandler, 
 
 	private void Awake()
 	{
-		_menuSelectionHandler = transform.root.gameObject.GetComponentInChildren<MenuSelectionHandler>();
+		_menuSelectionHandler = transform.root.gameObject.GetComponent<MenuSelectionHandler>();
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
