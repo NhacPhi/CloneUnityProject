@@ -1,0 +1,18 @@
+{
+    "name": "UOP1.StateMachine.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:37cba6f0c6c4cbe489dc73b338f2fda5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
