@@ -39,7 +39,6 @@ public class CameraManager : MonoBehaviour
 
     private void OnCameraMove(Vector2 cameraMovement, bool isDeviceMouse)
     {
-        Debug.Log("cameraMovement : " + cameraMovement);
         float deviceMultiplier = isDeviceMouse ? 0.02f : Time.deltaTime;
 
         freeLookVCam.m_XAxis.m_InputAxisValue = cameraMovement.x * deviceMultiplier * _speedMultiplier;

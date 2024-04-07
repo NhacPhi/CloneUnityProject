@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxForewardSpeed = 8f;
     [SerializeField] private float _gravity = 20f;
     [SerializeField] private float _jumpSpeed = 10f;
+
+    [NonSerialized] public Vector3 movementInput; //Initial input coming from the Protagonist script
+    [NonSerialized] public Vector3 movementVector; //Final movement vector, manipulated by the StateMachine actions
 
     public CinemachineFreeLook _gameCamera;
 
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour
         isActiveCursor = true;
 
         _charCtrl = GetComponent<CharacterController>();
+        Debug.Log("_charCtrl :" + _charCtrl.velocity);
         _Animator = GetComponent<Animator>();
     }
 
@@ -61,38 +66,45 @@ public class PlayerController : MonoBehaviour
     }
     private void RecalculateMovement()
     {
-        Vector3 adjustedMovement;
+        Vector3 adjustedMovement = Vector3.zero;
 
-        if (_gameplayCameraTransform.isSet)
-        {
-            //Get the two axes from the camera and flatten them on the XZ plane
-            Vector3 cameraForward = _gameplayCameraTransform.Value.forward;
-            cameraForward.y = 0f;
-            Vector3 cameraRight = _gameplayCameraTransform.Value.right;
-            cameraRight.y = 0f;
-
-            //Use the two axes, modulated by the corresponding inputs, and construct the final vector
-            adjustedMovement = cameraRight.normalized * _inputVector.x +
-                cameraForward.normalized * _inputVector.y;
-        }
-        else
-        {
-            //No CameraManager exists in the scene, so the input is just used absolute in world-space
-            Debug.LogWarning("No gameplay camera in the scene. Movement orientation will not be correct.");
-            adjustedMovement = new Vector3(_inputVector.x, 0f, _inputVector.y);
-        }
-
-        //Debug.Log("_inputVector " + _inputVector);
-        //Fix to avoid getting a Vector3.zero vector, which would result in the player turning to x:0, z:0
         if (_inputVector.sqrMagnitude != 0f)
         {
-            _charCtrl.Move(adjustedMovement*Time.deltaTime * _maxForewardSpeed);
-            _Animator.SetFloat(_HashForwardSpeed, 1);
+            if (_gameplayCameraTransform.isSet)
+            {
+                //Get the two axes from the camera and flatten them on the XZ plane
+                Vector3 cameraForward = _gameplayCameraTransform.Value.forward;
+                cameraForward.y = 0f;
+                Vector3 cameraRight = _gameplayCameraTransform.Value.right;
+                cameraRight.y = 0f;
+
+                //Use the two axes, modulated by the corresponding inputs, and construct the final vector
+                adjustedMovement = cameraRight.normalized * _inputVector.x +
+                    cameraForward.normalized * _inputVector.y;
+            }
+
+            movementInput = adjustedMovement.normalized;
+
+
+
         }
         else
         {
-            _Animator.SetFloat(_HashForwardSpeed, 0);
+            movementInput = Vector3.zero;
         }
+        //Debug.Log("_inputVector " + _inputVector);
+        //Fix to avoid getting a Vector3.zero vector, which would result in the player turning to x:0, z:0
+
+            //if (_inputVector.sqrMagnitude != 0f)
+            //{
+            //    _charCtrl.Move(adjustedMovement*Time.deltaTime * _maxForewardSpeed);
+            //    _Animator.SetFloat(_HashForwardSpeed, 1);
+            //}
+            //else
+            //{
+            //    _Animator.SetFloat(_HashForwardSpeed, 0);
+            //}
 
     }
+
 }

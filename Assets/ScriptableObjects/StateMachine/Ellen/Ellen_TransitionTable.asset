@@ -12,3 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2da9e74a4bf28445aee7d9c40a2bcef, type: 3}
   m_Name: Ellen_TransitionTable
   m_EditorClassIdentifier: 
+  _transitions:
+  - FromState: {fileID: 11400000, guid: 6c4b1ea6375dea1418e705893a899bbb, type: 2}
+    ToState: {fileID: 11400000, guid: d9bcd773e362da5458c774e5f7fc9483, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: c1ef270e4a2a3784790d30f833b05562, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: d9bcd773e362da5458c774e5f7fc9483, type: 2}
+    ToState: {fileID: 11400000, guid: 6c4b1ea6375dea1418e705893a899bbb, type: 2}
+    Conditions:
+    - ExpectedResult: 1
+      Condition: {fileID: 11400000, guid: c1ef270e4a2a3784790d30f833b05562, type: 2}
+      Operator: 0
