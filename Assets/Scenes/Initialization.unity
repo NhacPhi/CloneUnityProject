@@ -155,7 +155,7 @@ MonoBehaviour:
   _managersScene: {fileID: 11400000, guid: b797e8f31b761cb4ba20c535cdf9c6eb, type: 2}
   _menuToLoad: {fileID: 11400000, guid: b58f7bb6718ab814f857a4fcee426ffe, type: 2}
   _menuLoadChannel:
-    m_AssetGUID: 1d04083f726a27947a6431f5e4a85cea
+    m_AssetGUID: 7aa8e54c08ba15d49b5599c88c68c1e3
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

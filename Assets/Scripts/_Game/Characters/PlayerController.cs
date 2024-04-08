@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded = true;
     private bool _ReadyToJump;
 
-    private bool isActiveCursor;
-
     readonly int _HashForwardSpeed = Animator.StringToHash("ForwardSpeed");
     private Animator _Animator;
     // Start is called before the first frame update
@@ -36,8 +34,15 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _ipnutReader.EnableGamePlay();
+
+#if UNITY_EDITOR_WIN
         Screen.lockCursor = true;
-        isActiveCursor = true;
+#endif
+
+#if UNITY_STANDALONE_WIN
+        Screen.lockCursor = true;
+#endif
+        //isActiveCursor = true;
 
         _charCtrl = GetComponent<CharacterController>();
         Debug.Log("_charCtrl :" + _charCtrl.velocity);
@@ -92,18 +97,6 @@ public class PlayerController : MonoBehaviour
         {
             movementInput = Vector3.zero;
         }
-        //Debug.Log("_inputVector " + _inputVector);
-        //Fix to avoid getting a Vector3.zero vector, which would result in the player turning to x:0, z:0
-
-            //if (_inputVector.sqrMagnitude != 0f)
-            //{
-            //    _charCtrl.Move(adjustedMovement*Time.deltaTime * _maxForewardSpeed);
-            //    _Animator.SetFloat(_HashForwardSpeed, 1);
-            //}
-            //else
-            //{
-            //    _Animator.SetFloat(_HashForwardSpeed, 0);
-            //}
 
     }
 

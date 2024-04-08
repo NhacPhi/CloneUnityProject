@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Utils;
@@ -11,7 +8,7 @@ namespace UIFramework
     {
         [SerializeField] private UISettings defaultUISettings = null;
         //[SerializeField] private FakePlayerData fakePlayerData = null;
-        [SerializeField] private Camera cam = null;
+        //[SerializeField] private Camera cam = null;
 
         private UIFrame uiFrame;
 
@@ -32,16 +29,17 @@ namespace UIFramework
         // Start is called before the first frame update
         void Start()
         {
-            _overlayCamera = uiFrame.GetComponent<Transform>().Find("UICamera").GetComponent<Camera>();
-            if (_overlayCamera != null)
-            {
-                var cameraData = cam.GetUniversalAdditionalCameraData();
-                cameraData.cameraStack.Add(_overlayCamera);
-            }
-            else
-            {
-                Debug.Log("Don't find camera UI");
-            }
+            //_overlayCamera = uiFrame.GetComponent<Transform>().Find("UICamera").GetComponent<Camera>();
+            //if (_overlayCamera != null)
+            //{
+            //    var cameraData = cam.GetUniversalAdditionalCameraData();
+            //    cameraData.cameraStack.Add(_overlayCamera);
+            //}
+            //else
+            //{
+            //    Debug.Log("Don't find camera UI");
+            //}
+
             uiFrame.OpenWindow(ScreenIds.StartMainMenu);
         }
 

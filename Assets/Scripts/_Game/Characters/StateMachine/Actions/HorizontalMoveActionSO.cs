@@ -26,6 +26,5 @@ public class HorizontalMoveAction : StateAction
     {
         //delta.Time is used when the movement is applied (ApplyMovementVectorAction)
         _playerController.movementVector = _playerController.movementInput * _originSO.speed;
-        Debug.Log("movementVector: " + _playerController.movementVector);
     }
 }

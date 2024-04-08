@@ -785,7 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameplayScene: {fileID: 11400000, guid: 778e8a60304b1254ebc5e6254a685d40, type: 2}
-  _loadMenu: {fileID: 11400000, guid: 1d04083f726a27947a6431f5e4a85cea, type: 2}
+  _loadMenu: {fileID: 11400000, guid: 7aa8e54c08ba15d49b5599c88c68c1e3, type: 2}
   _loadLocation: {fileID: 11400000, guid: 1d04083f726a27947a6431f5e4a85cea, type: 2}
   _toggleLoadingScene: {fileID: 11400000, guid: 9fdf44e8884e6064eb3fbebc09cc1ca8, type: 2}
   _fadeRequestChannel: {fileID: 11400000, guid: 40db1c5e649ae5d48994c8e7a8c41f92, type: 2}

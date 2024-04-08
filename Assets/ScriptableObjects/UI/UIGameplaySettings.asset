@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8236c0769ccd46ab4bd3fb6cdd07e, type: 3}
   m_Name: UIGameplaySettings
   m_EditorClassIdentifier: 
-  templateUIPrefab: {fileID: 0}
-  screensToRegister: []
+  templateUIPrefab: {fileID: 358001020665244776, guid: 0f21ab459561ea747a0bbff87e9f8907, type: 3}
+  screensToRegister:
+  - {fileID: 3538476225386210838, guid: 130a311ffca455149bd0296a754bf47d, type: 3}
   deactivateScreenGOs: 1
