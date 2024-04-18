@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "346f41c8-ba0d-462d-a8ab-1bb0dcf5d31f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -96,7 +105,7 @@
                     "id": "293f3fdb-2bce-446f-a0d8-6a7bf4d155c8",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=2,y=2)",
+                    "processors": "",
                     "groups": "KeyboardAndMouse",
                     "action": "RotateCamera",
                     "isComposite": false,
@@ -104,12 +113,23 @@
                 },
                 {
                     "name": "",
-                    "id": "5341e06c-9f3c-4480-bac9-d3bdd87694e5",
-                    "path": "<Touchscreen>/delta",
+                    "id": "a811ee86-e357-4fc9-9c2e-4b1ea4982e7c",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=2,y=2)",
+                    "groups": "Gamepad",
+                    "action": "RotateCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f462881a-09a2-4352-b5cf-45f0e0fee4ef",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Touchscreen",
-                    "action": "RotateCamera",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -14,6 +14,9 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions,GameInp
 
     // Shared between menus and dialogues
     public event UnityAction MoveSelectionEvent = delegate { };
+
+    public event UnityAction StartedRunning = delegate { };
+    public event UnityAction StoppedRunning = delegate { };
     private GameInput _gameInput;
     private void OnEnable()
     {
@@ -80,5 +83,18 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions,GameInp
     public void OnPoint(InputAction.CallbackContext context)
     {
 
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                StartedRunning.Invoke();
+                break;
+            case InputActionPhase.Canceled:
+                StoppedRunning.Invoke();
+                break;
+        }
     }
 }

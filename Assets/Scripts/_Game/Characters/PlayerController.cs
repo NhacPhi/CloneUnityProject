@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _maxForewardSpeed = 8f;
     [SerializeField] private float _gravity = 20f;
-    [SerializeField] private float _jumpSpeed = 10f;
+    [SerializeField] private float _runSpped = 1.5f;
 
     [NonSerialized] public Vector3 movementInput; //Initial input coming from the Protagonist script
     [NonSerialized] public Vector3 movementVector; //Final movement vector, manipulated by the StateMachine actions
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController _charCtrl;
     private bool _isGrounded = true;
+    private bool _isRunning = false;
     private bool _ReadyToJump;
 
     readonly int _HashForwardSpeed = Animator.StringToHash("ForwardSpeed");
@@ -52,11 +53,15 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         _ipnutReader.MoveEvent += OnMove;
+        _ipnutReader.StartedRunning += OnStartedRunning;
+        _ipnutReader.StoppedRunning += OnStoppedRunning;
     }
 
     private void OnDisable()
     {
         _ipnutReader.MoveEvent -= OnMove;
+        _ipnutReader.StartedRunning -= OnStartedRunning;
+        _ipnutReader.StoppedRunning -= OnStoppedRunning;
     }
 
     private void Update()
@@ -87,9 +92,14 @@ public class PlayerController : MonoBehaviour
                 adjustedMovement = cameraRight.normalized * _inputVector.x +
                     cameraForward.normalized * _inputVector.y;
             }
-
-            movementInput = adjustedMovement.normalized;
-
+            if(_isRunning)
+            {
+                movementInput = adjustedMovement.normalized * _runSpped;
+            }
+            else
+            {
+                movementInput = adjustedMovement.normalized;
+            }
 
 
         }
@@ -99,5 +109,8 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    private void OnStartedRunning() => _isRunning = true;
+    private void OnStoppedRunning() => _isRunning = false;
 
 }
