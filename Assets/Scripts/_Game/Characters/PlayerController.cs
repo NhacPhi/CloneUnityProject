@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputReader _ipnutReader = default;
+    [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private TransformAnchor _gameplayCameraTransform = default;
 
     private Vector2 _inputVector;
@@ -17,6 +17,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _maxForewardSpeed = 8f;
     [SerializeField] private float _gravity = 20f;
     [SerializeField] private float _runSpped = 1.5f;
+
+    public const float GRAVITY_MULTIPLIER = 5f;
+    public const float MAX_FALL_SPEED = -50f;
+    public const float MAX_RISE_SPEED = 100f;
+    public const float GRAVITY_COMEBACK_MULTIPLIER = .03f;
+    public const float GRAVITY_DIVIDER = .6f;
+    public const float AIR_RESISTANCE = 5f;
 
     [NonSerialized] public Vector3 movementInput; //Initial input coming from the Protagonist script
     [NonSerialized] public Vector3 movementVector; //Final movement vector, manipulated by the StateMachine actions
@@ -26,6 +33,14 @@ public class PlayerController : MonoBehaviour
     private CharacterController _charCtrl;
     private bool _isGrounded = true;
     private bool _isRunning = false;
+
+    private bool _isJumpInput = false;
+
+    public bool IsJumpIpnut
+    {
+        set { _isJumpInput = value; }
+        get { return _isJumpInput; }
+    }
     private bool _ReadyToJump;
 
     readonly int _HashForwardSpeed = Animator.StringToHash("ForwardSpeed");
@@ -34,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _ipnutReader.EnableGamePlay();
+        _inputReader.EnableGamePlay();
 
 #if UNITY_EDITOR_WIN
         Screen.lockCursor = true;
@@ -52,16 +67,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        _ipnutReader.MoveEvent += OnMove;
-        _ipnutReader.StartedRunning += OnStartedRunning;
-        _ipnutReader.StoppedRunning += OnStoppedRunning;
+        _inputReader.MoveEvent += OnMove;
+        _inputReader.StartedRunning += OnStartedRunning;
+        _inputReader.StoppedRunning += OnStoppedRunning;
+        _inputReader.JumpEvent += OnJumpInitiated;
+        _inputReader.JumpCanceledEvent += OnJumpCanceled;
     }
 
     private void OnDisable()
     {
-        _ipnutReader.MoveEvent -= OnMove;
-        _ipnutReader.StartedRunning -= OnStartedRunning;
-        _ipnutReader.StoppedRunning -= OnStoppedRunning;
+        _inputReader.MoveEvent -= OnMove;
+        _inputReader.StartedRunning -= OnStartedRunning;
+        _inputReader.StoppedRunning -= OnStoppedRunning;
+        _inputReader.JumpEvent -= OnJumpInitiated;
+        _inputReader.JumpCanceledEvent -= OnJumpCanceled;
     }
 
     private void Update()
@@ -112,5 +131,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnStartedRunning() => _isRunning = true;
     private void OnStoppedRunning() => _isRunning = false;
+
+    private void OnJumpInitiated() => _isJumpInput = true;
+    private void OnJumpCanceled() => _isJumpInput = false;
 
 }

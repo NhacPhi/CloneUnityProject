@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions,GameInput.IMainMenuActions
+public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameInput.IMainMenuActions
 {
     // GamePlay
     public event UnityAction<Vector2> MoveEvent = delegate { };
@@ -17,6 +17,9 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions,GameInp
 
     public event UnityAction StartedRunning = delegate { };
     public event UnityAction StoppedRunning = delegate { };
+
+    public event UnityAction JumpEvent = delegate { };
+    public event UnityAction JumpCanceledEvent = delegate { };
     private GameInput _gameInput;
     private void OnEnable()
     {
@@ -96,5 +99,14 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions,GameInp
                 StoppedRunning.Invoke();
                 break;
         }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            JumpEvent.Invoke();
+
+        if (context.phase == InputActionPhase.Canceled)
+            JumpCanceledEvent.Invoke();
     }
 }

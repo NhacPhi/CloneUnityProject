@@ -2,6 +2,11 @@ using StateMachine;
 using StateMachine.ScriptableObjects;
 using UnityEngine;
 using Moment = StateMachine.StateAction.SpecificMoment;
+
+/// <summary>
+/// Flexible StateActionSO for the StateMachine which allows to set any parameter on the Animator, in any moment of the state (OnStateEnter, OnStateExit, or each OnUpdate).
+/// </summary>
+[CreateAssetMenu(fileName = "AnimatorParameterAction", menuName = "State Machines/Actions/Set Animator Parameter")]
 public class AnimatorParameterActionSO : StateActionSO
 {
     public ParameterType parameterType = default;
@@ -12,12 +17,15 @@ public class AnimatorParameterActionSO : StateActionSO
     public float floatValue = default;
 
     public Moment whenToRun = default; // Allows this StateActionSO type to be reused for all 3 state moments
+
     protected override StateAction CreateAction() => new AnimatorParameterAction(Animator.StringToHash(parameterName));
+
     public enum ParameterType
     {
         Bool, Int, Float, Trigger,
     }
 }
+
 public class AnimatorParameterAction : StateAction
 {
     //Component references
