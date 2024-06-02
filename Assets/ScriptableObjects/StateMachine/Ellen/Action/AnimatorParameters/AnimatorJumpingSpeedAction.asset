@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d50450dd4037de49b1944e24bddbfae, type: 3}
-  m_Name: Ascend
+  m_Script: {fileID: 11500000, guid: 09ff283336d58a743a720b378f38d5a1, type: 3}
+  m_Name: AnimatorJumpingSpeedAction
   m_EditorClassIdentifier: 
-  description: Computes the y component of the Protagonist's movementVector
-  initialJumpForce: 0
+  description: Sets the JumpingSpeed parameter on the Animator contoller
+  parameterName: Airbome

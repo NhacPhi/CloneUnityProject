@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public const float MAX_RISE_SPEED = 100f;
     public const float GRAVITY_COMEBACK_MULTIPLIER = .03f;
     public const float GRAVITY_DIVIDER = .6f;
-    public const float AIR_RESISTANCE = 5f;
+    [SerializeField] public const float AIR_HIGH = 7f;
 
     [NonSerialized] public Vector3 movementInput; //Initial input coming from the Protagonist script
     [NonSerialized] public Vector3 movementVector; //Final movement vector, manipulated by the StateMachine actions
@@ -31,7 +31,13 @@ public class PlayerController : MonoBehaviour
     public CinemachineFreeLook _gameCamera;
 
     private CharacterController _charCtrl;
+
+    public bool _isFalling = false;
+
+    public float deltaJump = 0;
+
     private bool _isGrounded = true;
+
     private bool _isRunning = false;
 
     private bool _isJumpInput = false;
