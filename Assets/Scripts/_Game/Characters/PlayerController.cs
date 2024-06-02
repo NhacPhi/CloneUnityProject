@@ -36,6 +36,10 @@ public class PlayerController : MonoBehaviour
 
     public float deltaJump = 0;
 
+    public bool _isIdle = true;
+
+    public bool _isActack = false;
+
     private bool _isGrounded = true;
 
     private bool _isRunning = false;
@@ -78,6 +82,8 @@ public class PlayerController : MonoBehaviour
         _inputReader.StoppedRunning += OnStoppedRunning;
         _inputReader.JumpEvent += OnJumpInitiated;
         _inputReader.JumpCanceledEvent += OnJumpCanceled;
+        _inputReader.AttackEvent += OnAttackInitiated;
+        _inputReader.AttackCancelEvent += OnAttackCanceled;
     }
 
     private void OnDisable()
@@ -87,6 +93,8 @@ public class PlayerController : MonoBehaviour
         _inputReader.StoppedRunning -= OnStoppedRunning;
         _inputReader.JumpEvent -= OnJumpInitiated;
         _inputReader.JumpCanceledEvent -= OnJumpCanceled;
+        _inputReader.AttackEvent -= OnAttackInitiated;
+        _inputReader.AttackCancelEvent -= OnAttackCanceled;
     }
 
     private void Update()
@@ -117,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 adjustedMovement = cameraRight.normalized * _inputVector.x +
                     cameraForward.normalized * _inputVector.y;
             }
-            if(_isRunning)
+            if (_isRunning)
             {
                 movementInput = adjustedMovement.normalized * _runSpped;
             }
@@ -141,4 +149,6 @@ public class PlayerController : MonoBehaviour
     private void OnJumpInitiated() => _isJumpInput = true;
     private void OnJumpCanceled() => _isJumpInput = false;
 
+    private void OnAttackInitiated()  {_isActack = true; _isIdle = false; this.GetComponent<Animator>().SetTrigger("MeleeAttack"); }
+    private void OnAttackCanceled() => _isActack = false;
 }

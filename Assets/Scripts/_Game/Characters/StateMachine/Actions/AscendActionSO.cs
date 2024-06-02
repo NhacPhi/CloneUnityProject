@@ -47,7 +47,7 @@ public class AscendAction : StateAction
             //_gravityContributionMultiplier *= PlayerController.GRAVITY_DIVIDER; //Reduce the gravity effect
 
             //Note that deltaTime is used even though it's going to be used in ApplyMovementVectorAction, this is because it represents an acceleration, not a speed
-            _verticalMovement = 30 * Time.deltaTime;
+            _verticalMovement = 15 * Time.deltaTime;
 
             _playerController.deltaJump -= _verticalMovement;
             //Note that even if it's added, the above value is negative due to Physics.gravity.y

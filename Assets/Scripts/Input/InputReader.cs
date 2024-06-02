@@ -20,6 +20,8 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
     public event UnityAction JumpEvent = delegate { };
     public event UnityAction JumpCanceledEvent = delegate { };
+    public event UnityAction AttackEvent = delegate { };
+    public event UnityAction AttackCancelEvent = delegate { };
     private GameInput _gameInput;
     private void OnEnable()
     {
@@ -108,5 +110,14 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 
         if (context.phase == InputActionPhase.Canceled)
             JumpCanceledEvent.Invoke();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            AttackEvent.Invoke();
+
+        if (context.phase == InputActionPhase.Canceled)
+            AttackCancelEvent.Invoke();
     }
 }

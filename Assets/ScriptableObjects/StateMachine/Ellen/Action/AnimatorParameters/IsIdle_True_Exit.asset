@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98752192094f32d428738a5b943db48d, type: 3}
-  m_Name: Idle
+  m_Script: {fileID: 11500000, guid: 107502f3880b6f9489b31c53724ac762, type: 3}
+  m_Name: IsIdle_True_Exit
   m_EditorClassIdentifier: 
-  _actions:
-  - {fileID: 11400000, guid: a437f984f173ffe4fa4e04d7f345cf97, type: 2}
-  - {fileID: 11400000, guid: c39351e86e103044d8a05147f37f4bbf, type: 2}
+  description: Sets a Parameter on the character's Animator controller
+  parameterType: 0
+  parameterName: IsAirborne
+  boolValue: 1
+  intValue: 0
+  floatValue: 0
+  whenToRun: 0
